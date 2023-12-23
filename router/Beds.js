@@ -15,6 +15,20 @@ const { model } = require('mongoose');
 //addward:
 // POST to add beds to an existing ward
 
+router.post('/bedposs',async(req,res)=>{
+  try{
+      const {wards,beds} = req.body;
+      const bed = new Bed({wards,beds})
+      await bed.save();
+      res.json(bed)
+  }
+  catch(error){
+      res.json(error)
+  }
+}) 
+
+
+
 router.post('/add-ward-and-beds', async (req, res) => {
   try {
     const { wardName, wardType } = req.body;
