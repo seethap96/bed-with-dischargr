@@ -2,33 +2,26 @@ const mongoose = require('mongoose');
 const bedSchema = new mongoose.Schema({
   wards:[
     {
-      name: String,
+      wardName: String,
+      wardId:String,
       wardType:String,
       beds: [
         {
 
-          number: String,
-          status: String, // "available" or "occupied"
-          patientName: String, // Add this field
-          gender:String,
-          age:Number,
-          contactno:String,
+          bedNumber: String,
+          status: { type: String, 
+            enum: ['available', 'occupied'], default: 'available' },
+
+          //status: String, // "available" or "occupied"
           patientId:String,
-          medicalAcuity: String,
-          admissionDate:String,
-          admissionTime:String,
-          riskScore:String,
-          //address:String,
-          patient: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Patient', // Reference to your patient model
-          },
-          
+          patientName:String,
+          age:String,
+          gender:String,
+contactno:String,
+medicalAcuity:String,
         }]
     },
   ],
 });
-
 const Bed = mongoose.model('Wards', bedSchema);
-
 module.exports = Bed;
