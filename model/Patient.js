@@ -9,13 +9,15 @@ const patientSchema = new mongoose.Schema({
   gender:String,
   contactno:String,
   patientId:String,
+  wardId:String,
  // status:String,
-  wards:{
-    type:String,
-    require:true
-},
+  
+wardName:{
+  type:String,
+  require:true
 
-  number:{
+},
+  bedNumber:{
     type:String,
 },
 
@@ -42,6 +44,7 @@ pincode:String,
 ],
 riskScore:String,
 assignedNurse: String,
+abhaNo:String,
 tasks: [
   {
     taskType: String,
@@ -50,9 +53,7 @@ tasks: [
   },
 ],
 tasks: [taskSchema],
-
 });
-
 const Patient = mongoose.model('Patient', patientSchema);
 
 module.exports = Patient;
